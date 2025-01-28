@@ -5,8 +5,9 @@ import {authConfig} from '@/auth.config';
 import Credentials from '@auth/core/providers/credentials';
 import {LoginUserSchema} from '@/schemas/auth';
 import bcrypt from 'bcryptjs';
+import Google from '@auth/core/providers/google';
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const { handlers: {GET, POST}, signIn, signOut, auth } = NextAuth({
     ...authConfig,
     session: {strategy: 'jwt'},
     providers: [
@@ -17,9 +18,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     return null;
                 }
                 const {email, password} = validatedCredentials.data;
-                const user = await prisma.findFirst({
-                    email: email,
+                const user = await prisma.user.findFirst({
+                    where: {
+                        email: email,
+                    }
                 })
+
                 if(!user || !user.password || !user.email) {
                     return null
                 }
@@ -31,6 +35,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     return null;
                 }
             },
+        }),
+        Google({
+            clientId: process.env.AUTH_GOOGLE_CLIENT_ID,
+            clientSecret: process.env.AUTH_GOOGLE_CLIENT_SECRET
         }),
     ],
     adapter: PrismaAdapter(prisma),

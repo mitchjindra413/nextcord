@@ -9,6 +9,8 @@ import {Button} from '@/components/ui/button';
 import {RegisterUserSchema} from '@/schemas/auth';
 import {registerUser} from '@/actions/auth/registerUser';
 import {useState} from 'react';
+import ServerFormError from '@/components/auth/ServerFormError';
+import {loginUser} from '@/actions/auth/loginUser';
 
 const RegisterForm = () => {
     const form = useForm<z.infer<typeof RegisterUserSchema>>({
@@ -30,6 +32,14 @@ const RegisterForm = () => {
             }
             if(res.success) {
                 setError("");
+                loginUser(data).then((res) => {
+                    if(res.error) {
+                        setError(res.error);
+                    }
+                    if(res.success) {
+                        setError("");
+                    }
+                });
             }
         });
     };
@@ -89,7 +99,7 @@ const RegisterForm = () => {
                     {form.formState.isSubmitting ? "Loading ..." : "Register"}
                 </Button>
                 {error&& (
-                    <p className={"text-red-700"}>{error}</p>
+                    <ServerFormError errorMessage={error} />
                 )}
             </form>
         </Form>

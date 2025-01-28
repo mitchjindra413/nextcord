@@ -1,6 +1,5 @@
 import RegisterForm from '@/components/auth/RegisterForm';
-import {oauthOptions} from '@/lib/oauth-options';
-import OauthOption from '@/components/auth/OauthOption';
+import GoogleOAuth from '@/components/auth/GoogleOAuth';
 import Link from 'next/link';
 
 const RegisterPage = () => {
@@ -19,9 +18,7 @@ const RegisterPage = () => {
                 <span className="mx-4 text-gray-300">or</span>
                 <div className="flex-grow border-t border-gray-300"></div>
             </div>
-            {oauthOptions.map((option, index) => (
-                <OauthOption key={index} {...option} />
-            ))}
+            <GoogleOAuth/>
         </section>
     );
 };

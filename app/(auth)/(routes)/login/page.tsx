@@ -1,7 +1,6 @@
 import Link from 'next/link';
-import {oauthOptions} from '@/lib/oauth-options';
 import LoginForm from '@/components/auth/LoginForm';
-import OauthOption from '@/components/auth/OauthOption';
+import GoogleOAuth from '@/components/auth/GoogleOAuth';
 
 const LoginPage = () => {
 
@@ -12,7 +11,7 @@ const LoginPage = () => {
                 <p className={"font-thin text-sm"}>Login to Account</p>
             </div>
             <LoginForm/>
-            <Link className={"text-xs underline"} href={"/login"}>
+            <Link className={"text-xs underline"} href={"/register"}>
                 Want to register an account?
             </Link>
             <div className="flex items-center pb-2">
@@ -20,9 +19,7 @@ const LoginPage = () => {
                 <span className="mx-4 text-gray-300">or</span>
                 <div className="flex-grow border-t border-gray-300"></div>
             </div>
-            {oauthOptions.map((option, index) => (
-                <OauthOption key={index} {...option} />
-            ))}
+            <GoogleOAuth/>
         </section>
     )
 }

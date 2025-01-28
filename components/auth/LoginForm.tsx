@@ -9,6 +9,7 @@ import {Button} from '@/components/ui/button';
 import {LoginUserSchema} from '@/schemas/auth';
 import {useState} from 'react';
 import {loginUser} from '@/actions/auth/loginUser';
+import ServerFormError from '@/components/auth/ServerFormError';
 
 const LoginForm = () => {
     const form = useForm<z.infer<typeof LoginUserSchema>>({
@@ -70,10 +71,10 @@ const LoginForm = () => {
                     )}
                 />
                 <Button className={"w-full"} disabled={formState.isSubmitting} type={"submit"}>
-                    {form.formState.isSubmitting ? "Loading ..." : "Login"}
+                    {form.formState.isSubmitting ? "Loading ..." : "Log in"}
                 </Button>
                 {error&& (
-                    <p className={"text-red-700"}>{error}</p>
+                    <ServerFormError errorMessage={error} />
                 )}
             </form>
         </Form>

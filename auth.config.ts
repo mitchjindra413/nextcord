@@ -9,8 +9,8 @@ export const authConfig = {
             const isLoggedIn = !!auth?.user;
             const isOnDashboard = nextUrl.pathname.startsWith('/channels');
             if (isOnDashboard) {
-                if (isLoggedIn) return true;
-                return false;
+                return isLoggedIn;
+
             } else if (isLoggedIn) {
                 return Response.redirect(new URL('/channels', nextUrl));
             }
