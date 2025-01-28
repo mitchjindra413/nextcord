@@ -9,10 +9,9 @@ const GoogleOAuth = () => {
     const [error, dispatchGoogle] = useActionState(googleLogin, undefined);
 
     return (
-        <form onSubmit={dispatchGoogle}>
+        <form action={dispatchGoogle}>
             <Button
                 className="space-x-3 w-full"
-                type={'submit'}
                 variant={'outline'}
             >
                 <FcGoogle/>
