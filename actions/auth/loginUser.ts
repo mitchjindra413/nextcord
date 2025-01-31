@@ -31,7 +31,7 @@ export const loginUser = async(data: z.infer<typeof LoginUserSchema>): Promise<A
             email: user.email,
             password: password,
             redirect: true,
-            redirectTo: "/channels"
+            redirectTo: "/servers"
         });
     } catch(error) {
         if(error instanceof AuthError) {
