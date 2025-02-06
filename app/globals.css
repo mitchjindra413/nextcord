@@ -110,3 +110,7 @@ html, body, :root {
     @apply bg-background text-foreground;
   }
 }
+
+.navbar-server-button {
+  @apply flex h-[46px] w-[46px] rounded-full hover:rounded-[16px] transition overflow-hidden items-center justify-center bg-neutral-700 hover:bg-indigo-600
+}

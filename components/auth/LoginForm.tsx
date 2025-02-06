@@ -9,7 +9,7 @@ import {Button} from '@/components/ui/button';
 import {LoginUserSchema} from '@/schemas/auth';
 import {useState} from 'react';
 import {loginUser} from '@/actions/auth/loginUser';
-import ServerFormError from '@/components/auth/ServerFormError';
+import ResponseFormError from '@/components/error/ResponseFormError';
 
 const LoginForm = () => {
     const form = useForm<z.infer<typeof LoginUserSchema>>({
@@ -74,7 +74,7 @@ const LoginForm = () => {
                     {form.formState.isSubmitting ? "Loading ..." : "Log in"}
                 </Button>
                 {error&& (
-                    <ServerFormError errorMessage={error} />
+                    <ResponseFormError errorMessage={error} />
                 )}
             </form>
         </Form>

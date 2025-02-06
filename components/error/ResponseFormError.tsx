@@ -1,7 +1,7 @@
 import {FormMessage} from '@/components/ui/form';
 import { MdErrorOutline } from "react-icons/md";
 
-const ServerFormError = ({errorMessage}: {errorMessage: string}) => {
+const ResponseFormError = ({errorMessage}: {errorMessage: string}) => {
     return (
         <div className={"w-100 border flex items-center space-x-2 p-2 rounded border-destructive"}>
             <MdErrorOutline className={"text-destructive"}/>
@@ -11,4 +11,4 @@ const ServerFormError = ({errorMessage}: {errorMessage: string}) => {
         </div>
     );
 };
-export default ServerFormError;
+export default ResponseFormError;

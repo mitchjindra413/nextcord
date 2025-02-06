@@ -1,40 +1,13 @@
-import {
-    Sidebar,
-    SidebarContent,
-    SidebarGroup,
-    SidebarHeader,
-    SidebarProvider,
-    SidebarSeparator
-} from '@/components/ui/sidebar';
-import CreateServerModal from '@/components/modals/CreateServerModal';
-import {ModeToggle} from '@/components/nav/ModeToggle';
-import fetchServers from '@/actions/server/fetchServers';
+'use client';
+import {Sidebar} from '@/components/ui/sidebar';
+import ServersSideBar from '@/components/nav/server/ServersSideBar';
 
-
-const NavBar = async () => {
-    const serverResult = await fetchServers();
-
+const NavBar = () => {
     return (
-        <SidebarProvider
-            style={{
-                "--sidebar-width": "72px",
-                "--sidebar-width-mobile": "72px",
-            }}
-        >
-            <Sidebar>
-                <SidebarGroup className={"flex items-center"}>
-                    <CreateServerModal/>
-                </SidebarGroup>
-                <SidebarSeparator/>
+        <Sidebar>
+            <ServersSideBar/>
 
-                <SidebarContent>
-                    {/*{serverResult.servers?.map(*/}
-                    {/*    <CreateServerTrigger />*/}
-                    {/*)}*/}
-                </SidebarContent>
-                <ModeToggle/>
-            </Sidebar>
-        </SidebarProvider>
+        </Sidebar>
     );
 };
 

@@ -1,6 +1,6 @@
 'use client'
 import {Button} from '@/components/ui/button';
-import ServerFormError from '@/components/auth/ServerFormError';
+import ResponseFormError from '@/components/error/ResponseFormError';
 import {useActionState} from 'react';
 import {FcGoogle} from 'react-icons/fc';
 import {googleLogin} from '@/actions/auth/googleLogin';
@@ -18,7 +18,7 @@ const GoogleOAuth = () => {
                 <span>Log in with Google</span>
             </Button>
             {
-                error&& <ServerFormError errorMessage={error?.error} />
+                error&& <ResponseFormError errorMessage={error?.error} />
             }
         </form>
     );

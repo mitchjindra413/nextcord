@@ -9,7 +9,7 @@ import {Button} from '@/components/ui/button';
 import {RegisterUserSchema} from '@/schemas/auth';
 import {registerUser} from '@/actions/auth/registerUser';
 import {useState} from 'react';
-import ServerFormError from '@/components/auth/ServerFormError';
+import ResponseFormError from '@/components/error/ResponseFormError';
 import {loginUser} from '@/actions/auth/loginUser';
 
 const RegisterForm = () => {
@@ -99,7 +99,7 @@ const RegisterForm = () => {
                     {form.formState.isSubmitting ? "Loading ..." : "Register"}
                 </Button>
                 {error&& (
-                    <ServerFormError errorMessage={error} />
+                    <ResponseFormError errorMessage={error} />
                 )}
             </form>
         </Form>

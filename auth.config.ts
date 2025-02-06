@@ -1,4 +1,9 @@
 import type { NextAuthConfig } from 'next-auth';
+import {JWT} from '@auth/core/jwt';
+
+interface CustomToken extends JWT {
+    id: string;
+}
 
 export const authConfig = {
     pages: {
@@ -17,10 +22,15 @@ export const authConfig = {
             return true;
         },
         jwt({ token, user }) {
-            if (user) { // User is available during sign-in
+            if (user) {
                 token.id = user.id
             }
+            console.log(token);
             return token
+        },
+        session({ session, token }) {
+            session.user.id = (token as CustomToken).id;
+            return session
         },
     },
     providers: [],

@@ -1,6 +1,6 @@
 'use client';
 
-import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger} from '@/components/ui/dialog';
+import {Dialog, DialogContent, DialogHeader, DialogTitle} from '@/components/ui/dialog';
 import {useForm} from 'react-hook-form';
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from '@/components/ui/form';
 import {z} from "zod";
@@ -8,22 +8,34 @@ import {CreateServerSchema} from '@/schemas/server';
 import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
 import createServer from '@/actions/server/createServer';
-import { FiPlus } from "react-icons/fi";
 import CreateServerTrigger from '@/components/modals/CreateServerTrigger';
+import {useState} from 'react';
+import ResponseFormError from '@/components/error/ResponseFormError';
+import {zodResolver} from '@hookform/resolvers/zod';
 
 const CreateServerModal = () => {
     const form = useForm<z.infer<typeof CreateServerSchema>>({
         defaultValues: {
             name: "",
             image: undefined
-        }
+        },
+        resolver: zodResolver(CreateServerSchema),
+        mode: 'onBlur'
     });
     const formState = form.formState;
+    const [error, setError] = useState("");
 
     const onSubmit = async (data: z.infer<typeof CreateServerSchema>) => {
-        await createServer(data);
+       createServer(data).then((res) => {
+           if(res.status === "error") {
+               setError(res.message);
+           } else {
+               setError("");
+           }
+       })
     };
 
+    console.log(formState.errors)
     return (
         <Dialog>
             <CreateServerTrigger />
@@ -68,9 +80,12 @@ const CreateServerModal = () => {
                                 </FormItem>
                             )}
                         />
-                        <Button className={"w-100"}>
+                        <Button disabled={formState.isSubmitting} className={"w-100"}>
                             {formState.isSubmitting ? "Loading..." : "Create"}
                         </Button>
+                        {
+                            error&& <ResponseFormError errorMessage={error} />
+                        }
                     </form>
                 </Form>
             </DialogContent>

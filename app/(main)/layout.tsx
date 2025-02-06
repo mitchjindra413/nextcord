@@ -1,14 +1,13 @@
 import {SidebarProvider} from '@/components/ui/sidebar';
-import NavBar from '@/components/nav/NavBar';
+import ServersSideBar from '@/components/nav/server/ServersSideBar';
 
 const ChannelsLayout = ({children}: {children: React.ReactNode}) => {
 
     return (
         <SidebarProvider>
-            <NavBar/>
-            <main>
+            <section>
                 {children}
-            </main>
+            </section>
         </SidebarProvider>
     );
 };

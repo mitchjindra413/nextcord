@@ -90,7 +90,7 @@ model Authenticator {
 model Server {
   id String @id @default(uuid())
   name String
-  imageUrl String
+  imageUrl String?
   inviteCode String
 
   userId String
