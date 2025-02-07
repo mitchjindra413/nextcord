@@ -80,7 +80,7 @@ html, body, :root {
 
 @layer base {
   :root {
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 220, 13%, 95%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
@@ -88,10 +88,12 @@ html, body, :root {
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-server-primary: 216, 10%, 90%;
+    --sidebar-server-accent:215, 9%, 73%
   }
 
   .dark {
-    --sidebar-background: 240 5.9% 10%;
+    --sidebar-background: 220 7% 18%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
@@ -99,6 +101,7 @@ html, body, :root {
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-server-primary: 225, 10%, 10%;
   }
 }
 
@@ -112,5 +115,8 @@ html, body, :root {
 }
 
 .navbar-server-button {
-  @apply flex h-[46px] w-[46px] rounded-full hover:rounded-[16px] transition overflow-hidden items-center justify-center bg-neutral-700 hover:bg-indigo-600
+  @apply flex h-[46px] w-[46px] hover:rounded-[16px]
+  transition overflow-hidden items-center justify-center
+  bg-sidebar-accent hover:bg-indigo-600
+  text-sidebar-accent-foreground font-semibold text-2xl hover:text-white
 }

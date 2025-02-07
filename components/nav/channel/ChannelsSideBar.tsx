@@ -1,10 +1,16 @@
-import {Sidebar} from '@/components/ui/sidebar';
+import {Channel} from '@prisma/client';
 
-const ChannelsSideBar = () => {
+const ChannelsSideBar = ({channels, serverName}: {channels: Channel[], serverName: string}) => {
+    const textChannels: Channel[] = [];
+    const audioChannels: Channel[] = [];
+    const videoChannels: Channel[] = [];
+
     return (
-        <Sidebar>
-
-        </Sidebar>
+        <nav className={"h-screen w-[238px] bg-sidebar p-2"}>
+            <div>
+                <h2>{serverName}</h2>
+            </div>
+        </nav>
     );
 };
 

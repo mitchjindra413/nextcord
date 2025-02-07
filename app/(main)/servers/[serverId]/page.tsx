@@ -1,11 +1,13 @@
 import {auth} from '@/auth';
 import SignOutButton from '@/components/auth/SignOutButton';
+import {SidebarProvider} from '@/components/ui/sidebar';
+import ChannelsSideBar from '@/components/nav/channel/ChannelsSideBar';
 
-const ChannelsPage = async () => {
-    const session = await auth();
+const ChannelsPage = () => {
+
     return (
         <section>
-            <h1>{session?.user?.email}</h1>
+            <h1>Hello</h1>
             <SignOutButton/>
         </section>
     );
